@@ -26,6 +26,9 @@ exit $lastexitcode
 $o365AdminUser = "adminuser@example.onmicrosoft.com"
 $o365AdminPass = ""
 
+$LicName = "example:STANDARDWOFFPACK_IW_STUDENT"
+$LO = New-MsolLicenseOptions -AccountSkuId $LicName -DisabledPlans "BPOS_S_TODO_2", "AAD_BASIC_EDU", "SCHOOL_DATA_SYNC_P1", "STREAM_O365_E3", "TEAMS1", "INTUNE_O365", "Deskless", "FLOW_O365_P2", "POWERAPPS_O365_P2", "RMS_S_ENTERPRISE", "OFFICE_FORMS_PLAN_2", "PROJECTWORKMANAGEMENT", "SWAY", "YAMMER_EDU", "SHAREPOINTWAC_EDU", "SHAREPOINTSTANDARD_EDU", "EXCHANGE_S_STANDARD", "MCOSTANDARD"
+
 # Used for Write-Log function
 . .\logger.ps1
 
@@ -37,8 +40,6 @@ import-module MSOnline;
 $msolcredential = New-Object System.Management.Automation.PsCredential($o365AdminUser, (ConvertTo-SecureString $o365AdminPass -AsPlainText -Force));
 connect-msolservice -credential $msolcredential;
 
-$LicName = "example:STANDARDWOFFPACK_IW_STUDENT"
-$LO = New-MsolLicenseOptions -AccountSkuId $LicName -DisabledPlans "BPOS_S_TODO_2", "AAD_BASIC_EDU", "SCHOOL_DATA_SYNC_P1", "STREAM_O365_E3", "TEAMS1", "INTUNE_O365", "Deskless", "FLOW_O365_P2", "POWERAPPS_O365_P2", "RMS_S_ENTERPRISE", "OFFICE_FORMS_PLAN_2", "PROJECTWORKMANAGEMENT", "SWAY", "YAMMER_EDU", "SHAREPOINTWAC_EDU", "SHAREPOINTSTANDARD_EDU", "EXCHANGE_S_STANDARD", "MCOSTANDARD"
 
 Function New-RandomComplexPassword ($length = 15) {
     $Assembly = Add-Type -AssemblyName System.Web
